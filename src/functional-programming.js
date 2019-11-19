@@ -1,7 +1,3 @@
-/* eslint-disable no-var */
-/* eslint-disable prefer-rest-params */
-
-//https://drive.google.com/file/d/19Lr3A4DvoivgZuhyZw_tYPiRaIgGQU15/view
 // --------------- task 1 (partial application) ----------------
 
 
@@ -45,7 +41,7 @@ var namesMessage = partial('Slava', 'Kolya', showColleguesNames)('Vera', 'Ira');
 console.log(namesMessage);
 
 
-//--------------- task 2 (curring) ----------------
+//--------------- task 2 (currying) ----------------
 
 
 function curry(func) {
