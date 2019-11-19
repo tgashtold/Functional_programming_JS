@@ -274,7 +274,7 @@ console.log(findFirst([3, 4, 5, 6, 7, 8], getEvenNumbers));
 console.log(findFirst(['settlements', 'announcement', 'international', 'inconclusive', 'administration'], getBigEvenStrings));
 
 
-//--------------- task 10 (lazy avaluation) ----------------
+//--------------- task 10 (lazy evaluation) ----------------
 
 function makeLazy(funcToMakeLazy) {
   var argsForLazyFanc = Array.apply(null, arguments).slice(1);
