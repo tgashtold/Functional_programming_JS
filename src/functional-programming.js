@@ -46,7 +46,7 @@ var namesMessage = partial('Slava', 'Kolya', showColleguesNames)('Vera', 'Ira');
 console.log(namesMessage);
 
 
-//testing errors
+//errors testing 
 // var totalSumError = partial(1, Infinity, sumValues)(4, 2);
 // var totalSumError = partial(1, 2, 3)(4, 2);
 // var namesMessageError = partial('fsdfsd', 'Kolya', showColleguesNames)(function(){}, 'Ira');

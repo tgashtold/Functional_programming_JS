@@ -1,5 +1,4 @@
 var validationFunctions = {
-  self: this,
   isFiniteNumber: function (value) {
     var result = typeof (value) == 'number' && isFinite(value) && !Number.isNaN(value);
 
