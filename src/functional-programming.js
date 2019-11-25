@@ -4,7 +4,7 @@ function partial() {
   var funcForParcialExec = arguments[arguments.length - 1];
   var funcArgs = [...arguments].slice(0, arguments.length - 1);
 
-  validationFunctions.validateParametersAndThrowError('Last function parameter must be a function', 
+  validationFunctions.validateParametersAndThrowError('Last function parameter must be a function',
     !validationFunctions.isFunction(funcForParcialExec));
 
   return function () {
@@ -17,7 +17,7 @@ function partial() {
 
 //functions for testing
 function sumValues() {
-  validationFunctions.validateParametersAndThrowError('Function accepts only finite numbers as parameters', 
+  validationFunctions.validateParametersAndThrowError('Function accepts only finite numbers as parameters',
     !validationFunctions.areFiniteNumbers([...arguments]));
 
   var sum = 0;
@@ -306,7 +306,7 @@ function filterArr(arr, callback) {
 
 //functions for testing
 function getEvenNumbers(value) {
-  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',  
+  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',
     !validationFunctions.isFiniteNumber(value));
 
   return value % 2 === 0;
@@ -346,9 +346,10 @@ function getEvenNumbersAvg(arr) {
   var sumValue = linearFold(avgNumbersArr, function (initialValue, currentValue) {
     return initialValue + currentValue;
   }, 0);
+  var result;
 
   if (avgNumbersArr.length) {
-    var result = sumValue / avgNumbersArr.length;
+    result = sumValue / avgNumbersArr.length;
   } else {
     throw new Error('The array doesn`t have even numbers');
   }
@@ -426,7 +427,7 @@ console.log(findFirst(['settlements', 'announcement', 'international', 'inconclu
 
 
 function makeLazy(funcToMakeLazy) {
-  validationFunctions.validateParametersAndThrowError('Function expects a function as first parameter', 
+  validationFunctions.validateParametersAndThrowError('Function expects a function as first parameter',
     !validationFunctions.isFunction(arguments[0]));
 
   var argsForLazyFanc = Array.from(arguments).slice(1);
@@ -441,7 +442,7 @@ function makeLazy(funcToMakeLazy) {
 function showFriendsNames() {
   var namesArr = Array.from(arguments);
 
-  validationFunctions.validateParametersAndThrowError('The function expects strings as parameters', 
+  validationFunctions.validateParametersAndThrowError('The function expects strings as parameters',
     !validationFunctions.areStrings(namesArr));
 
   return 'My friends: ' + namesArr.join(', ');
@@ -464,7 +465,7 @@ console.log(lazyFunc());
 
 
 function makeMemoization(func) {
-  validationFunctions.validateParametersAndThrowError('Function expects a function as first parameter', 
+  validationFunctions.validateParametersAndThrowError('Function expects a function as first parameter',
     !validationFunctions.isFunction(arguments[0]));
 
   var cache = {};
@@ -485,12 +486,12 @@ function makeMemoization(func) {
 
 //function for testing
 function getFibonacciValue(numberOfValueInSequence) {
-  validationFunctions.validateParametersAndThrowError('Function expects finite number as a parameter', 
+  validationFunctions.validateParametersAndThrowError('Function expects finite number as a parameter',
     !validationFunctions.isFiniteNumber(arguments[0]));
 
-  var fibValue = (numberOfValueInSequence === 0 || numberOfValueInSequence === 1) 
-      ? numberOfValueInSequence 
-      : (getFibonacciValue(numberOfValueInSequence - 1) + getFibonacciValue(numberOfValueInSequence - 2));
+  var fibValue = (numberOfValueInSequence === 0 || numberOfValueInSequence === 1) ?
+    numberOfValueInSequence :
+    (getFibonacciValue(numberOfValueInSequence - 1) + getFibonacciValue(numberOfValueInSequence - 2));
 
   return fibValue;
 }
