@@ -30,7 +30,8 @@ function sumValues() {
 function showColleguesNames() {
   var namesArr = Array.from(arguments);
 
-  validationFunctions.validateParametersAndThrowError('Function accepts only string type parameters with length between 2-20 symbols', !validationFunctions.areStringsWithAcceptableLength(namesArr, 2, 20));
+  validationFunctions.validateParametersAndThrowError('Function accepts only string type parameters with length between 2-20 symbols',
+    !validationFunctions.areStringsWithAcceptableLength(namesArr, 2, 20));
 
   return 'My collegues in the office are: ' + namesArr.join(', ');
 }
@@ -56,7 +57,7 @@ console.log(namesMessage);
 
 
 function curry(func) {
-  validationFunctions.validateParametersAndThrowError('Function parameter must be a function', !validationFunctions.isFunction(arguments[0]));
+  validationFunctions.validateParametersAndThrowError('Function parameter must be a function', !validationFunctions.isFunction(func));
 
   return function curriedFunc() {
     var args = [...arguments];
@@ -74,7 +75,8 @@ function curry(func) {
 
 //functions for testing
 function summarize(value1, value2, value3, value4, value5) {
-  validationFunctions.validateParametersAndThrowError('Function accepts 5 finite numbers as parameters', !validationFunctions.areFiniteNumbers([...arguments]), validationFunctions.isLessThenAcceptableLength(arguments, 5));
+  validationFunctions.validateParametersAndThrowError('Function accepts 5 finite numbers as parameters',
+    !validationFunctions.areFiniteNumbers([...arguments]), validationFunctions.isLessThenAcceptableLength(arguments, 5));
 
   return value1 + value2 + value3 + value4 + value5;
 }
@@ -82,7 +84,8 @@ function summarize(value1, value2, value3, value4, value5) {
 function showFiveNames(name1, name2, name3, name4, name5) {
   var namesArr = Array.from(arguments);
 
-  validationFunctions.validateParametersAndThrowError('Function accepts 5 string type parameters', !validationFunctions.areStringsWithAcceptableLength(namesArr, 2, 20), validationFunctions.isLessThenAcceptableLength(arguments, 5));
+  validationFunctions.validateParametersAndThrowError('Function accepts 5 string type parameters',
+    !validationFunctions.areStringsWithAcceptableLength(namesArr, 2, 20), validationFunctions.isLessThenAcceptableLength(arguments, 5));
 
   var result = 'My favorite 5 names are: ' + namesArr.join(', ');
 
@@ -109,7 +112,8 @@ console.log(curry(showFiveNames)('Kate')('Ivan')('Semen')('Oleg')('Nina'));
 function linearFold(arr, callback, initialValue) {
   var errorMessage = 'The function must contain 3 parameters \n 1. array \n 2. callback function \n 3. initial value of type accaptable by callback function';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3), !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
+  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3),
+    !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
 
   var result = initialValue;
 
@@ -125,7 +129,8 @@ function linearFold(arr, callback, initialValue) {
 function makeCalculations(initValue, currentValue, index, arr) {
   var errorMessage = 'The function must contain 4 parameters \n 1-3. finite numbers \n 4. array';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 4), !Array.isArray(arguments[3]), !validationFunctions.areFiniteNumbers([...arguments].splice(0, 3)));
+  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 4),
+    !Array.isArray(arguments[3]), !validationFunctions.areFiniteNumbers([...arguments].splice(0, 3)));
 
   var resultValue = initValue * arr.length + index + currentValue;
 
@@ -135,7 +140,9 @@ function makeCalculations(initValue, currentValue, index, arr) {
 function showList(initValue, currentValue, index, arr) {
   var errorMessage = 'The function must contain 4 parameters \n 1-2. strings \n 3. finite number \n 4. array';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 4), !Array.isArray(arguments[3]), !validationFunctions.areStrings([...arguments].slice(0, 2)), !validationFunctions.isFiniteNumber(index));
+  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 4),
+    !Array.isArray(arguments[3]), !validationFunctions.areStrings([...arguments].slice(0, 2)),
+    !validationFunctions.isFiniteNumber(index));
 
   return initValue + '\n' + (index + 1) + ' of ' + arr.length + ' ' + currentValue + ';';
 }
@@ -160,7 +167,8 @@ console.log(linearFold(['cat', 'dog', 'fish', 'parrot'], showList, 'My pets:'));
 function linearUnfold(callback, initialValue) {
   var errorMessage = 'The function accepts two parameters: \n 1. callback function  \n 2. parameter of type expacted by callback function';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, !validationFunctions.isFunction(arguments[0]), validationFunctions.isLessThenAcceptableLength(arguments, 2));
+  validationFunctions.validateParametersAndThrowError(errorMessage, !validationFunctions.isFunction(arguments[0]),
+    validationFunctions.isLessThenAcceptableLength(arguments, 2));
 
   var result = [initialValue];
   var valueForCallback = initialValue;
@@ -179,10 +187,12 @@ function linearUnfold(callback, initialValue) {
 
 //function for testing
 function getTwiceValuesFunc(limit) {
-  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter', !validationFunctions.isFiniteNumber(arguments[0]));
+  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',
+    !validationFunctions.isFiniteNumber(arguments[0]));
 
   return function (value) {
-    validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter', !validationFunctions.isFiniteNumber(arguments[0]));
+    validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',
+      !validationFunctions.isFiniteNumber(arguments[0]));
 
     if (value < limit) {
       return value * 2;
@@ -191,10 +201,12 @@ function getTwiceValuesFunc(limit) {
 }
 
 function getIncreaseByThreeFunc(limit) {
-  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter', !validationFunctions.isFiniteNumber(arguments[0]));
+  validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',
+    !validationFunctions.isFiniteNumber(arguments[0]));
 
   return function (value) {
-    validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter', !validationFunctions.isFiniteNumber(arguments[0]));
+    validationFunctions.validateParametersAndThrowError('The function expects finite number as a parameter',
+      !validationFunctions.isFiniteNumber(arguments[0]));
 
     if (value < limit) {
       return value + 3;
@@ -209,6 +221,7 @@ console.log('******* Tests for linearUnfold function');
 console.log(linearUnfold(getTwiceValuesFunc(50), 5));
 console.log(linearUnfold(getTwiceValuesFunc(20), 3));
 console.log(linearUnfold(getIncreaseByThreeFunc(8), -6));
+console.log(linearUnfold(getIncreaseByThreeFunc(6), 0));
 
 
 //errors testing 
@@ -220,7 +233,8 @@ console.log(linearUnfold(getIncreaseByThreeFunc(8), -6));
 
 
 function makeMap(arr, callback) {
-  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function', !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
+  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function',
+    !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
 
   var resultArr = [];
 
@@ -236,7 +250,8 @@ function makeMap(arr, callback) {
 function makeCalc(elementValue, index, arr) {
   var errorMessage = 'The function must contain 3 parameters \n 1-2. finite numbers \n 3. array';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3), !Array.isArray(arguments[2]), !validationFunctions.areFiniteNumbers([...arguments].slice(0, 1)));
+  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3),
+    !Array.isArray(arguments[2]), !validationFunctions.areFiniteNumbers([...arguments].slice(0, 1)));
 
   var result = index * arr.length + elementValue;
 
@@ -246,7 +261,8 @@ function makeCalc(elementValue, index, arr) {
 function addIndex(elementValue, index, arr) {
   var errorMessage = 'The function must contain 3 parameters \n 1. string \n 2. finite number \n 3. array';
 
-  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3), !Array.isArray(arguments[2]), !validationFunctions.isString(arguments[0]), !validationFunctions.isFiniteNumber(arguments[1]));
+  validationFunctions.validateParametersAndThrowError(errorMessage, validationFunctions.isLessThenAcceptableLength(arguments, 3),
+    !Array.isArray(arguments[2]), !validationFunctions.isString(arguments[0]), !validationFunctions.isFiniteNumber(arguments[1]));
 
   var result = elementValue + '_' + (index + 1) + '/' + arr.length;
 
@@ -271,7 +287,8 @@ console.log(makeMap(['cat', 'dog', 'fish', 'parrot'], addIndex));
 
 
 function filterArr(arr, callback) {
-  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function', !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
+  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function',
+    !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
 
   var resultArr = [];
 
@@ -293,7 +310,8 @@ function getEvenNumbers(value) {
 }
 
 function getBigStringsWithEvenInd(value, index) {
-  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. string \n 2. finite number', !validationFunctions.isFiniteNumber(arguments[1]), !validationFunctions.isString(arguments[0]));
+  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. string \n 2. finite number',
+    !validationFunctions.isFiniteNumber(arguments[1]), !validationFunctions.isString(arguments[0]));
 
   var isEven = value.length > 10 && index % 2 === 0;
 
@@ -318,13 +336,19 @@ console.log(filterArr(['settlements', 'announcement', 'international', 'inconclu
 
 
 function getEvenNumbersAvg(arr) {
-  validationFunctions.validateParametersAndThrowError('The function expects an array with finite numbers as a parameter', !Array.isArray(arguments[0]), !validationFunctions.areFiniteNumbers(arguments[0]));
+  validationFunctions.validateParametersAndThrowError('The function expects an array with finite numbers as a parameter',
+    !Array.isArray(arguments[0]), !validationFunctions.areFiniteNumbers(arguments[0]));
 
   var avgNumbersArr = filterArr(arr, getEvenNumbers);
   var sumValue = linearFold(avgNumbersArr, function (initialValue, currentValue) {
     return initialValue + currentValue;
   }, 0);
-  var result = avgNumbersArr.length ? sumValue / avgNumbersArr.length : 'The array doesn`t have even numbers';
+
+  if (avgNumbersArr.length) {
+    var result = sumValue / avgNumbersArr.length;
+  } else {
+    throw new Error('The array doesn`t have even numbers');
+  }
 
   return result;
 }
@@ -335,12 +359,12 @@ console.log('******* Tests for getting average of even numbers');
 
 console.log(getEvenNumbersAvg([1, 23, 2, 6, 12, 0]));
 console.log(getEvenNumbersAvg([-2, 5, 3, -6, 7, 0, 0]));
-console.log(getEvenNumbersAvg([3, 5, 3, 1]));
 
 
 //errors testing 
 // console.log(getEvenNumbersAvg(function(){}));
 // console.log(getEvenNumbersAvg(['fff', 5, 3, 1]));
+// console.log(getEvenNumbersAvg([3, 5, 3, 1]));
 
 
 //--------------- task 8 (sum of random numbers) ----------------
@@ -372,7 +396,8 @@ console.log(sumTenRandomNumbers());
 
 
 function findFirst(arr, callback) {
-  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function', !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
+  validationFunctions.validateParametersAndThrowError('The function expects 2 parameters: \n 1. array \n 2. callback function',
+    !Array.isArray(arguments[0]), !validationFunctions.isFunction(arguments[1]));
 
   for (var i = 0; i < arr.length; i++) {
     if (callback(arr[i], i, arr)) {
@@ -456,7 +481,9 @@ function makeMemoization(func) {
 function getFibonacciValue(numberOfValueInSequence) {
   validationFunctions.validateParametersAndThrowError('Function expects finite number as a parameter', !validationFunctions.isFiniteNumber(arguments[0]));
 
-  var fibValue = (numberOfValueInSequence === 0 || numberOfValueInSequence === 1) ? numberOfValueInSequence : (getFibonacciValue(numberOfValueInSequence - 1) + getFibonacciValue(numberOfValueInSequence - 2));
+  var fibValue = (numberOfValueInSequence === 0 || numberOfValueInSequence === 1) 
+      ? numberOfValueInSequence 
+      : (getFibonacciValue(numberOfValueInSequence - 1) + getFibonacciValue(numberOfValueInSequence - 2));
 
   return fibValue;
 }
@@ -473,4 +500,3 @@ console.log(funcWithCache(7));
 //errors testing 
 // makeMemoization(45);
 // funcWithCache(NaN);
-
